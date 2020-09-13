@@ -8,9 +8,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 import uuid
 import boto3
 
-S3_BASE_URL = 'https://s3-us-west-1.amazonaws.com/'
-BUCKET = 'pycasso629bucket'
-
 # Create your views here.
 def home(request):
     return render(request, 'home.html')
