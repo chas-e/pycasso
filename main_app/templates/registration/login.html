@@ -3,12 +3,14 @@
 {% block content %}
 
 <h1>Login</h1>
-
-<form action="{% url 'login' %}" method="POST">
+<main class="pa4 black-80">
+<div class="mt3">
+<form action="{% url 'login' %}" method="POST" class="measure center">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" class="bg-light-green" value="Login">
     <input type="hidden" name="next" value="{{ next }}">
 </form>
+</main>
 
 {% endblock %}
