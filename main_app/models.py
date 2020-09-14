@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+
 class Art(models.Model):
     MEDIA_TYPES = (
         ('C', 'Camera Photography'),
@@ -12,7 +13,7 @@ class Art(models.Model):
         ('P', 'Painting'),
         ('S', 'Sketch Drawing'),
     )
-    artist = models.ForeignKey(User, on_delete=models.CASCADE)s
+    artist = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     id = models.AutoField(primary_key=True)
     media_type = models.CharField(max_length=1, choices=MEDIA_TYPES)
