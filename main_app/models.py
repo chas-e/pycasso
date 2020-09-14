@@ -1,11 +1,8 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 # Create your models here.
-
-
-class User(models.Model):
-    pass
 
 
 class Art(models.Model):
@@ -16,7 +13,7 @@ class Art(models.Model):
         ('P', 'Painting'),
         ('S', 'Sketch Drawing'),
     )
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    artist = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     id = models.AutoField(primary_key=True)
     media_type = models.CharField(max_length=1, choices=MEDIA_TYPES)
