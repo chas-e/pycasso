@@ -12,7 +12,7 @@ class Art(models.Model):
     MEDIA_TYPES = (
         ('C', 'Camera Photography'),
         ('D', 'Digital Artwork'),
-        ('J', 'CSS codepen')
+        ('J', 'CSS codepen'),
         ('P', 'Painting'),
         ('S', 'Sketch Drawing'),
     )
