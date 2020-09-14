@@ -1,0 +1,19 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-color: rebeccapurple;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+nav {
+    flex-direction: row;
+}
+
+footer {
+    padding-top: 0;
+    text-align: center;
+}
