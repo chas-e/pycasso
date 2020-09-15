@@ -3,6 +3,8 @@ body {
     min-height: 100vh;
     flex-direction: column;
     background-color: rgb(252, 245, 237);
+    background-color: tan;
+    font-family: 'avenir next', avenir, sans-serif;
 }
 
 main {
@@ -11,6 +13,7 @@ main {
 
 nav {
     flex-direction: row;
+    justify-content: space-evenly;
 }
 
 footer {
