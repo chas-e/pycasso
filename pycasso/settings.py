@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY =config('SECRET_KEY')
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -79,10 +79,6 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'pycasso',
-        'USER': 'postgres',
-        'PASSWORD': 'starwars',
-        'PORT': 5432,
-        'HOST': 'localhost'
     }
 }
 
@@ -130,6 +126,6 @@ STATICFILES_DIRS = [
     '/var/www/static/',
 ]
 
-LOGIN_REDIRECT_URL = '/'    
+LOGIN_REDIRECT_URL = '/'
 
 LOGOUT_REDIRECT_URL = '/'
