@@ -4,6 +4,23 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+
+class Profile(models.Model):
+    ARTIST_TYPES = (
+        (1, ('Photographer')),
+        (2, ('Painter')),
+        (3, ('Digital Illustrator'))
+    )
+    user = models.ForeignKey(User, on_delete=models.CASCADE,)
+    bio = models.TextField(max_length=500)
+    birthday = models.DateField()
+    artist_type = models.CharField(max_length=25, choices=ARTIST_TYPES)
+    is_public = models.BooleanField(default=True)
+    location = models.CharField(max_length=100)
+    profile_img = models.ImageField(height_field=None, width_field=None)
+    points = models.IntegerField(default=1)
+
+
 class Art(models.Model):
     MEDIA_TYPES = (
         ('C', 'Camera Photography'),
@@ -12,7 +29,7 @@ class Art(models.Model):
         ('P', 'Painting'),
         ('S', 'Sketch Drawing'),
     )
-    artist = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     id = models.AutoField(primary_key=True)
     media_type = models.CharField(max_length=1, choices=MEDIA_TYPES)
@@ -20,6 +37,6 @@ class Art(models.Model):
     description = models.TextField(max_length=250)
     # tags see https://django-tagging.readthedocs.io/en/develop/
     colors_used = models.TextField(max_length=250)
-    karma = models.IntegerField()
+    karma = models.IntegerField(default=1)
     date_posted = models.DateField()
-    
+    is_public = models.BooleanField(default=True)
