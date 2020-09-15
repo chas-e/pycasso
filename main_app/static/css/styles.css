@@ -16,10 +16,15 @@ nav {
     justify-content: space-evenly;
 }
 
+li {
+    list-style: none;
+}
+
 footer {
     padding-top: 0;
     text-align: center;
 }
+
 /* log in page styling */
 .ba {
     border-style: solid;
@@ -31,7 +36,9 @@ footer {
 }
 
 
-.bg-gold-90 { background-color: #FFB700 }
+.bg-gold-90 {
+    background-color: #FFB700
+}
 
 .tracked {
     letter-spacing: .1em;
