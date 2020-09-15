@@ -11,7 +11,7 @@ class Profile(models.Model):
         (2, ('Painter')),
         (3, ('Digital Illustrator'))
     )
-    id = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,)
     bio = models.TextField(max_length=500)
     birthday = models.DateField()
     artist_type = models.CharField(max_length=25, choices=ARTIST_TYPES)
@@ -29,7 +29,7 @@ class Art(models.Model):
         ('P', 'Painting'),
         ('S', 'Sketch Drawing'),
     )
-    artist = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     id = models.AutoField(primary_key=True)
     media_type = models.CharField(max_length=1, choices=MEDIA_TYPES)

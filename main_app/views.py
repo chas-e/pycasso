@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -34,3 +35,7 @@ def signup(request):
 
 class ArtList(LoginRequiredMixin, ListView):
     model = Art
+
+class ArtCreate(LoginRequiredMixin, CreateView):
+    model = Art
+    fields = ['title', 'media_type', 'genre', 'description', 'colors_used', 'karma', 'date_posted', 'is_public']
