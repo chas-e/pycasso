@@ -17,7 +17,7 @@ class Profile(models.Model):
     artist_type = models.CharField(max_length=25, choices=ARTIST_TYPES)
     is_public = models.BooleanField(default=True)
     location = models.CharField(max_length=100)
-    profile_img = models.ImageField(height_field=None, width_field=None)
+    profile_img = models.models.CharField(max_length=100)
     points = models.IntegerField(default=1)
 
 
