@@ -17,11 +17,7 @@ class Profile(models.Model):
     artist_type = models.CharField(max_length=25, choices=ARTIST_TYPES)
     is_public = models.BooleanField(default=True)
     location = models.CharField(max_length=100)
-<<<<<<< HEAD
-    profile_img = models.models.CharField(max_length=100)
-=======
     profile_img = models.CharField(max_length=100)
->>>>>>> master
     points = models.IntegerField(default=1)
 
 
@@ -43,4 +39,5 @@ class Art(models.Model):
     karma = models.IntegerField(default=1)
     date_posted = models.DateField()
     is_public = models.BooleanField(default=True)
+    url = models.CharField(max_length=200)
 

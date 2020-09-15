@@ -11,13 +11,15 @@
 <h1> Add Artwork </h1>
 {% endif %}
 
-<form action="{% %}" method="POST">
+<form action="{% url 'art_create' %}" enctype="multipart/form-data" method="POST">
     {% csrf_token %}
     <table>
         {{ form.as_table }}
     </table>
-
-    <input type="submit" value="Submit">
+    <br><br>
+    <input type="file" name="art-file">
+    <br><br>
+    <input type="submit" value="Add Art">
     <a href="{% url 'art_index' %}">Cancel</a>
 </form>
 
