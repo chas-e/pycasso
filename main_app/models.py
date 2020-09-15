@@ -20,7 +20,6 @@ class Profile(models.Model):
     profile_img = models.CharField(max_length=100)
     points = models.IntegerField(default=1)
 
-
 class Art(models.Model):
     MEDIA_TYPES = (
         ('C', 'Camera Photography'),
@@ -40,4 +39,10 @@ class Art(models.Model):
     date_posted = models.DateField()
     is_public = models.BooleanField(default=True)
     url = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse ('art_index', kwargs={'art_id': self.id})
 

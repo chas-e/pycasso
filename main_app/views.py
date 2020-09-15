@@ -10,7 +10,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 import uuid
 import boto3
 
-from .models import Art
+from .models import Art, Profile
 
 S3_BASE_URL = 'https://s3-us-west-1.amazonaws.com/'
 BUCKET = 'pycasso629bucket'
@@ -43,7 +43,7 @@ class ArtCreate(LoginRequiredMixin, CreateView):
     def add_art_image(request):
         art_file = request.FILES.get('art_file', None)
         if art_file:
-            s3 = boto3_client('s3', {'profile_name': pycasso629 })
+            s3 = boto3_client('s3', kwargs={'profile_name': pycasso629 })
             key = uuid.uuid4().hex[:6] + art_file.name[art_file.name.rfind('.'):]
 
             try:
@@ -54,3 +54,7 @@ class ArtCreate(LoginRequiredMixin, CreateView):
             except:
                 print('An error ocurred uploading the file to s3.')
         return redirect('art_index')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)

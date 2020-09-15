@@ -4,7 +4,11 @@
 <div class="gallery">
 
     <h1>This is our art gallery.</h1>
-    {% for %}
+    {% for art in art_set.all %}
+    <img src="{{ art.url }}">
+    {% empty %}
+    <h3>No Art to display yet...</h3>
+    {% endfor %}
 
 </div>
 
