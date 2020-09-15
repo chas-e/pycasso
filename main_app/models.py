@@ -1,18 +1,13 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 # Create your models here.
-
-
-class User(models.Model):
-    pass
-
-
 class Art(models.Model):
     MEDIA_TYPES = (
         ('C', 'Camera Photography'),
         ('D', 'Digital Artwork'),
-        ('J', 'CSS codepen')
+        ('J', 'CSS codepen'),
         ('P', 'Painting'),
         ('S', 'Sketch Drawing'),
     )
