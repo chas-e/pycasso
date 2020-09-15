@@ -79,10 +79,6 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'pycasso',
-        'USER': 'postgres',
-        'PASSWORD': 'starwars',
-        'PORT': 5432,
-        'HOST': 'localhost'
     }
 }
 
@@ -124,11 +120,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
-STATICFILES_DIRS = [
-    BASE_DIR / 'static',
-    '/var/www/static/',
-]
 
 LOGIN_REDIRECT_URL = '/'    
 
