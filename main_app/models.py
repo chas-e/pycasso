@@ -37,6 +37,12 @@ class Art(models.Model):
     # tags see https://django-tagging.readthedocs.io/en/develop/
     colors_used = models.TextField(max_length=250)
     karma = models.IntegerField(default=1)
-    date_posted = models.DateField()
+    date_posted = models.DateTimeField(auto_now_add=True)
     is_public = models.BooleanField(default=True)
 
+class Photo(models.Model):
+    url = models.CharField(max_length=200)
+    Art = models.ForeignKey(Art, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'Photo for art_id: {self.art_id} @{self.url}'
