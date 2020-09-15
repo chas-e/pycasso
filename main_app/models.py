@@ -21,3 +21,4 @@ class Art(models.Model):
     colors_used = models.TextField(max_length=250)
     karma = models.IntegerField()
     date_posted = models.DateField()
+    
