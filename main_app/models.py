@@ -11,7 +11,11 @@ class Profile(models.Model):
         (2, ('Painter')),
         (3, ('Digital Illustrator'))
     )
+<<<<<<< HEAD
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+=======
+    user = models.ForeignKey(User, on_delete=models.CASCADE,)
+>>>>>>> dfa9c787b63e0b883c2aeb8b3609bebefed85320
     bio = models.TextField(max_length=500)
     birthday = models.DateField()
     artist_type = models.CharField(max_length=25, choices=ARTIST_TYPES)
@@ -29,7 +33,11 @@ class Art(models.Model):
         ('P', 'Painting'),
         ('S', 'Sketch Drawing'),
     )
+<<<<<<< HEAD
     artist = models.ForeignKey(User, on_delete=models.CASCADE)
+=======
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+>>>>>>> dfa9c787b63e0b883c2aeb8b3609bebefed85320
     title = models.CharField(max_length=100)
     media_type = models.CharField(max_length=1, choices=MEDIA_TYPES)
     genre = models.CharField(max_length=100)

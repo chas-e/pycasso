@@ -121,11 +121,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+<<<<<<< HEAD
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
     '/var/www/static/',
 ]
 
 LOGIN_REDIRECT_URL = '/'
+=======
+LOGIN_REDIRECT_URL = '/'    
+>>>>>>> dfa9c787b63e0b883c2aeb8b3609bebefed85320
 
 LOGOUT_REDIRECT_URL = '/'
