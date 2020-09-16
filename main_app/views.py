@@ -39,23 +39,20 @@ class ArtList(LoginRequiredMixin, ListView):
 
 class ArtCreate(LoginRequiredMixin, CreateView):
     model = Art
-    fields = ['url', 'title', 'media_type', 'genre', 'description', 'colors_used', 'karma', 'date_posted', 'is_public']
+    fields = ['title', 'media_type', 'genre', 'description', 'colors_used', 'karma', 'date_posted', 'is_public']
 
-    def add_art_image(request):
-        art_file = request.FILES.get('art-file', None)
+    def form_valid(self, form):
+        art_file = self.request.FILES.get('art-file', None)
         if art_file:
             s3 = boto3.client('s3')
             key = uuid.uuid4().hex[:6] + art_file.name[art_file.name.rfind('.'):]
-
             try:
                 s3.upload_fileobj(art_file, BUCKET, key)
                 url = f'{S3_BASE_URL}{BUCKET}/{key}'
-                art = Art(url=url, art_id=art_id)
-                art.save()
+                form.instance.url = url
             except:
                 print('An error ocurred uploading the file to s3.')
-        return redirect('art_index')
-
-    def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+        
+                
