@@ -17,7 +17,7 @@
         {{ form.as_table }}
     </table>
     <br><br>
-    <input type="file" name="art-file">
+    <input type="file" name="art-file" value="{{ object.url }}">
     <br><br>
     <input type="submit" value="Add Art">
     <a href="{% url 'art_index' %}">Cancel</a>
