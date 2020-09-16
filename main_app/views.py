@@ -54,5 +54,17 @@ class ArtCreate(LoginRequiredMixin, CreateView):
                 print('An error ocurred uploading the file to s3.')
         form.instance.user = self.request.user
         return super().form_valid(form)
+
+class ArtDetail(LoginRequiredMixin, DetailView):
+    model = Art
+
+class ArtUpdate(LoginRequiredMixin, UpdateView):
+    model = Art
+    fields = ['title', 'media_type', 'genre', 'description', 'colors_used', 'karma', 'date_posted', 'is_public']
+
+class ArtDelete(LoginRequiredMixin, DeleteView):
+    model = Art
+    success_url = '/art/'
+
         
                 
