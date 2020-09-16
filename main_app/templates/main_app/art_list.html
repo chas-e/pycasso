@@ -6,16 +6,12 @@
     <h1>This is your art gallery.</h1>
 
     {% for object in object_list %}
-
-    <div><a href="{% url 'art_detail' art.id %}"></a>
-        <img src="{{ object.url }}">
-        <h3>Title: {{ object.title }}</h3>
-        <h4>Media type: {{ object.media_type }}</h4>
-        <h4>Genre: {{ object.genre }}</h4>
-        <h4>Colors used: {{object.colors_used}}</h4>
-        <h4>Karma: {{ object.karma }}</h4>
-        <p>Description: {{ object.description }}</p>
-    </div>
+    <a href="{% url 'art_detail' object.id %}">
+        <div>
+            <img src="{{ object.url }}">
+            <h3>Title: {{ object.title }}</h3>
+        </div>
+    </a>
 
 
     {% empty %}

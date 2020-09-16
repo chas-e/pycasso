@@ -57,6 +57,14 @@ class ArtCreate(LoginRequiredMixin, CreateView):
 
 class ArtDetail(LoginRequiredMixin, DetailView):
     model = Art
-    
+
+class ArtUpdate(LoginRequiredMixin, UpdateView):
+    model = Art
+    fields = ['title', 'media_type', 'genre', 'description', 'colors_used', 'karma', 'date_posted', 'is_public']
+
+class ArtDelete(LoginRequiredMixin, DeleteView):
+    model = Art
+    success_url = '/art/'
+
         
                 
