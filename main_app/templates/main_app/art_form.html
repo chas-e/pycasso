@@ -11,6 +11,7 @@
 <h1 class="artworkh1"> Add Artwork </h1>
 {% endif %}
 
+<<<<<<< HEAD
 <form action="" class="submission-wrapper"  method="POST">
     {% csrf_token %}
     <!-- <table class="fl w-100 ph0 fw6 "> -->
@@ -41,6 +42,18 @@
     </div>
     <!-- </table> -->
     
+=======
+<form action="" enctype="multipart/form-data" method="POST">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <br><br>
+    <input type="file" name="art-file" value="{{ object.url }}">
+    <br><br>
+    <input type="submit" value="Add Art">
+    <a href="{% url 'art_index' %}">Cancel</a>
+>>>>>>> c107d9c9b2982bf19ecbd7094562b9f133993c4e
 </form>
 
 

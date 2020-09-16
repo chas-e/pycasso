@@ -2,16 +2,33 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
 
+# tags see https://django-tagging.readthedocs.io/en/develop/
 # Create your models here.
 
+MEDIA_TYPES = (
+    ('C', 'Camera Photography'),
+    ('D', 'Digital Artwork'),
+    ('J', 'CSS codepen'),
+    ('P', 'Painting'),
+    ('S', 'Sketch Drawing'),
+)
 
+ARTIST_TYPES = (
+    (1, ('Photographer')),
+    (2, ('Painter')),
+    (3, ('Digital Illustrator')),
+)
 class Profile(models.Model):
+<<<<<<< HEAD
     ARTIST_TYPES = (
         (1, ('Photographer')),
         (2, ('Painter')),
         (3, ('Digital Illustrator'))
     )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+=======
+    user = models.ForeignKey(User, on_delete=models.CASCADE,)
+>>>>>>> c107d9c9b2982bf19ecbd7094562b9f133993c4e
     bio = models.TextField(max_length=500)
     birthday = models.DateField()
     artist_type = models.CharField(max_length=25, choices=ARTIST_TYPES)
@@ -20,8 +37,8 @@ class Profile(models.Model):
     profile_img = models.CharField(max_length=100)
     points = models.IntegerField(default=1)
 
-
 class Art(models.Model):
+<<<<<<< HEAD
     MEDIA_TYPES = (
         ('C', 'Camera Photography'),
         ('D', 'Digital Artwork'),
@@ -29,14 +46,22 @@ class Art(models.Model):
         ('P', 'Painting'),
         ('S', 'Sketch Drawing'),
     )
+=======
+>>>>>>> c107d9c9b2982bf19ecbd7094562b9f133993c4e
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     media_type = models.CharField(max_length=1, choices=MEDIA_TYPES)
     genre = models.CharField(max_length=100)
     description = models.TextField(max_length=250)
-    # tags see https://django-tagging.readthedocs.io/en/develop/
     colors_used = models.TextField(max_length=250)
     karma = models.IntegerField(default=1)
     date_posted = models.DateField()
     is_public = models.BooleanField(default=True)
+    url = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse ('art_index')
 
