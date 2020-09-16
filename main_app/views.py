@@ -9,11 +9,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 import uuid
 import boto3
+from decouple import config 
 
-from .models import Art
+from .models import Art, Profile
 
-S3_BASE_URL = 'https://s3-us-west-1.amazonaws.com/'
-BUCKET = 'pycasso629bucket'
+S3_BASE_URL = config('S3_BASE_URL')
+BUCKET = config('BUCKET')
 
 # Create your views here.
 def home(request):
@@ -39,3 +40,19 @@ class ArtList(LoginRequiredMixin, ListView):
 class ArtCreate(LoginRequiredMixin, CreateView):
     model = Art
     fields = ['title', 'media_type', 'genre', 'description', 'colors_used', 'karma', 'date_posted', 'is_public']
+
+    def form_valid(self, form):
+        art_file = self.request.FILES.get('art-file', None)
+        if art_file:
+            s3 = boto3.client('s3')
+            key = uuid.uuid4().hex[:6] + art_file.name[art_file.name.rfind('.'):]
+            try:
+                s3.upload_fileobj(art_file, BUCKET, key)
+                url = f'{S3_BASE_URL}{BUCKET}/{key}'
+                form.instance.url = url
+            except:
+                print('An error ocurred uploading the file to s3.')
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+        
+                

@@ -3,7 +3,25 @@
 {% block content %}
 <div class="gallery">
 
-    <h1>This is our art gallery.</h1>
+    <h1>This is your art gallery.</h1>
+
+    {% for object in object_list %}
+
+    <div>
+        <img src="{{ object.url }}">
+        <h3>Title: {{ object.title }}</h3>
+        <h4>Media type: {{ object.media_type }}</h4>
+        <h4>Genre: {{ object.genre }}</h4>
+        <h4>Colors used: {{object.colors_used}}</h4>
+        <h4>Karma: {{ object.karma }}</h4>
+        <p>Description: {{ object.description }}</p>
+    </div>
+
+
+    {% empty %}
+
+    <h3>No Art to display yet...</h3>
+    {% endfor %}
 
 </div>
 

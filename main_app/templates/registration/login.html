@@ -1,25 +1,22 @@
-{% extends 'base.html' %}
-
+{% extends ‘base.html’ %}
 {% block content %}
-
 <!-- <h1>Login</h1> -->
-<main class="pa4 black-80">
-        <form method="post" action="{% url 'login' %}" class="measure center">
-        <fieldset id="login" class="ba b--transparent ph0 mh0"></fieldset>
-        <legend class="f4 fw6 ph0 mh0">Log In</legend>
-             <div class="mt3">
-                {% csrf_token %}
-                {{ form.as_p }}
-                
-                <input class="pa2 input-reset ba bg-transparent hover-bg-red hover-white w-100" type="submit" name="login"  id="login" value="login">
-                <input type="hidden" name="next" value="{{ next }}">
-              </div>
-            <!-- {% csrf_token %}
+<main class=“pa4 black-80”>
+  <form action=“{% url ‘login’ %}” class=“measure center” method=“POST”>
+    <fieldset id=“login” class=“ba b--transparent ph0 mh0"></fieldset>
+    <legend class=“f4 fw6 ph0 mh0”>Log In</legend>
+    <div class=“mt3">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input class=“pa2 input-reset ba bg-transparent hover-bg-red hover-white w-100” type=“submit” name=“login”
+        id=“login” value=“login”>
+      <input type=“hidden” name=“next” value=“{{ next }}“>
+    </div>
+    <!-- {% csrf_token %}
             {{ form.as_p }}
-            <input type="submit" class="bg-light-green" value="Login">
-            <input type="hidden" name="next" value="{{ next }}"> -->
-        </form>
-</div>
+            <input type=“submit” class=“bg-light-green” value=“Login”>
+            <input type=“hidden” name=“next” value=“{{ next }}“> -->
+  </form>
+  </div>
 </main>
-
 {% endblock %}

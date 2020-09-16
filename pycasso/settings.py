@@ -79,6 +79,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'pycasso',
+        'USER': 'postgres',
+        'PASSWORD': 'starwars',
+        'PORT': 5432,
+        'HOST': 'localhost',
     }
 }
 
@@ -125,6 +129,7 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
     '/var/www/static/',
 ]
+
 
 LOGIN_REDIRECT_URL = '/'
 
