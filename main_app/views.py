@@ -69,7 +69,10 @@ class ArtDelete(LoginRequiredMixin, DeleteView):
 
 def gallery_index(request):
     art = Art.objects.filter(is_public == True)
-    return render(request, 'main_app/gallery/index.html', { 'art': art })
+    return render(request, 'gallery/gallery_index.html', { 'art': art })
+
+def gallery_detail(request, art_id):
+    pass
 
 class CommentCreate(LoginRequiredMixin, CreateView):
     model = Comment
