@@ -1,3 +1,4 @@
+import datetime
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
@@ -44,5 +45,17 @@ class Art(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse ('art_index')
+        return reverse('art_index')
 
+class Comment(models.Model):
+    comment = models.TextField(max_length=500)
+    rating = models.IntegerField()
+    date_created = models.DateField()
+    art = models.ForeignKey(Art, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.comment
+
+    def get_absolute_url(self):
+        return reverse('art_detail', kwargs={ 'art.id': self.art.id })
