@@ -13,4 +13,6 @@ urlpatterns = [
     path('gallery/', views.gallery_index, name='gallery_index'),
     path('gallery/<int:art_id>/', views.gallery_detail, name='gallery_detail'),
     path('art/<int:art_id>/add_comment/', views.add_comment, name='add_comment'),
+    path('gallery/<int:art_id>/comment/<int:pk>/update/', views.CommentUpdate.as_view(), name="comment_update"),
+    path('gallery/<int:art_id>/comment/<int:pk>/delete/', views.CommentDelete.as_view(), name="comment_delete"),
 ]

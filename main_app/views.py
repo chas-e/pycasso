@@ -88,5 +88,12 @@ def add_comment(request, art_id):
         print(new_comment, request.user)
     return redirect('gallery_detail', art_id=art_id)
 
+class CommentUpdate(LoginRequiredMixin, UpdateView):
+    model = Comment
+    fields = ['comment', 'rating', 'date_created']
+    
+class CommentDelete(LoginRequiredMixin, DeleteView):
+    model = Comment
+    success_url = '/gallery/'
         
                 

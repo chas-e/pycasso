@@ -58,4 +58,4 @@ class Comment(models.Model):
         return self.comment
 
     def get_absolute_url(self):
-        return reverse('gallery_detail', kwargs={ 'art.id': self.art.id })
+        return reverse('gallery_detail', kwargs={ 'art_id': self.art.id })
