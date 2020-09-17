@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if object %}
+
+<h1>Edit {{ object.art.title }}: {{ object.rating}}</h1>
+
+{% else %}
+
+<h1>Add a comment</h1>
+
+{% endif %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <input type="submit" value="Add Comment">
+    <a href="{% url 'art_detail' object.art_id %}"></a>
+</form>
+
+{% endblock %}

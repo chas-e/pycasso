@@ -17,6 +17,9 @@
                 <li class="tl">
                     <a class="link dim white justify-start" href="{% url 'home' %}" title="Home">Pycasso</a>
                 </li>
+                <li class="tl">
+                    <a class="link dim white justify-start" href="{% url 'gallery_index' %}" title="Gallery">Gallery</a>
+                </li>
             </ul>
             <ul class="tr">
                 {% if user.is_authenticated %}

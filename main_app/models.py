@@ -20,7 +20,7 @@ ARTIST_TYPES = (
     (3, ('Digital Illustrator')),
 )
 class Profile(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE,)
+    user = models.OneToOneField(User, on_delete=models.CASCADE,)
     bio = models.TextField(max_length=500)
     birthday = models.DateField()
     artist_type = models.CharField(max_length=25, choices=ARTIST_TYPES)

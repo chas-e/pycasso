@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
@@ -11,7 +11,8 @@ import uuid
 import boto3
 from decouple import config 
 
-from .models import Art, Profile
+from .models import Art, Profile, Comment
+from .forms import CommentForm
 
 S3_BASE_URL = config('S3_BASE_URL')
 BUCKET = config('BUCKET')
@@ -65,6 +66,18 @@ class ArtUpdate(LoginRequiredMixin, UpdateView):
 class ArtDelete(LoginRequiredMixin, DeleteView):
     model = Art
     success_url = '/art/'
+
+def gallery_index(request):
+    art = Art.objects.filter(is_public == True)
+    return render(request, 'main_app/gallery/index.html', { 'art': art })
+
+class CommentCreate(LoginRequiredMixin, CreateView):
+    model = Comment
+    fields = ['comment', 'rating', 'date_created']
+
+    def form_valid(self, form, art_id):
+        pass
+
 
         
                 
