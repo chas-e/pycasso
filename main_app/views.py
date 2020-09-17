@@ -75,6 +75,7 @@ def gallery_detail(request, art_id):
     art = Art.objects.get(id=art_id)
     return render(request, 'gallery/gallery_detail.html', { 'art': art })
 
+@login_required
 def add_comment(request, art_id):
     form = CommentForm(request.POST)
     
