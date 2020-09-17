@@ -73,16 +73,19 @@ def gallery_index(request):
 
 def gallery_detail(request, art_id):
     art = Art.objects.get(id=art_id)
-    return render(request, 'gallery/gallery_detail.html', { 'art': art })
+    comment_form = CommentForm()
+    return render(request, 'gallery/gallery_detail.html', { 'art': art, 'comment_form': comment_form })
 
 @login_required
 def add_comment(request, art_id):
     form = CommentForm(request.POST)
-    
+
     if form.is_valid():
         new_comment = form.save(commit=False)
         new_comment.art_id = art_id
+        new_comment.user = request.user
         new_comment.save()
+        print(new_comment, request.user)
     return redirect('gallery_detail', art_id=art_id)
 
         
