@@ -5,10 +5,16 @@
 <h1>This is our public art gallery</h1>
 
 {% for art in art %}
-<div>
-    <img src="{{ art.url }}">
-    <h3>Title: {{ art.title }}</h3>
-</div>
+{% if art.is_public %}
+<a href="{% url 'gallery_detail' art.id %}">
+    <div>
+        <img src="{{ art.url }}">
+        <h3>Title: {{ art.title }}</h3>
+    </div>
+</a>
 
+{% endif %}
+
+{% endfor %}
 
 {% endblock %}

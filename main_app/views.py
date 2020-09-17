@@ -68,19 +68,21 @@ class ArtDelete(LoginRequiredMixin, DeleteView):
     success_url = '/art/'
 
 def gallery_index(request):
-    art = Art.objects.filter(is_public == True)
+    art = Art.objects.all()
     return render(request, 'gallery/gallery_index.html', { 'art': art })
 
 def gallery_detail(request, art_id):
-    pass
+    art = Art.objects.get(id=art_id)
+    return render(request, 'gallery/gallery_detail.html', { 'art': art })
 
-class CommentCreate(LoginRequiredMixin, CreateView):
-    model = Comment
-    fields = ['comment', 'rating', 'date_created']
-
-    def form_valid(self, form, art_id):
-        pass
-
+def add_comment(request, art_id):
+    form = CommentForm(request.POST)
+    
+    if form.is_valid():
+        new_comment = form.save(commit=False)
+        new_comment.art_id = art_id
+        new_comment.save()
+    return redirect('gallery_detail', art_id=art_id)
 
         
                 
