@@ -13,6 +13,7 @@
     <p>Description: {{ object.description }}</p>
     <a href="{% url 'art_update' object.id %}">Update Art</a>
     <a href="{% url 'art_delete' object.id %}">Delete Art</a>
+    <a href="{% url 'comment_add' object.id %}">Add a Comment</a>
 </div>
 
 {% endblock %}
