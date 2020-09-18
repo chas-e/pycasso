@@ -66,6 +66,20 @@ class ArtUpdate(LoginRequiredMixin, UpdateView):
     model = Art
     fields = ['title', 'media_type', 'genre', 'description', 'colors_used', 'karma', 'date_posted', 'is_public']
 
+    def form_valid(self, form):
+        art_file = self.request.FILES.get('art-file', None)
+        if art_file:
+            s3 = boto3.client('s3')
+            key = uuid.uuid4().hex[:6] + art_file.name[art_file.name.rfind('.'):]
+            try:
+                s3.upload_fileobj(art_file, BUCKET, key)
+                url = f'{S3_BASE_URL}{BUCKET}/{key}'
+                form.instance.url = url
+            except:
+                print('An error occurred uploading the file to s3.')
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
 class ArtDelete(LoginRequiredMixin, DeleteView):
     model = Art
     success_url = '/art/'
