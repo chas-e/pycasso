@@ -1,5 +1,5 @@
 var canvas = document.getElementById("paint");
-var ctx = canvas.getContext("2d"); // See docs from https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D
+var ctx = canvas.getContext("2d");
 var width = canvas.width,
   height = canvas.height;
 var curX, curY, prevX, prevY;
@@ -14,6 +14,12 @@ var canvas_data = {
   eraser: [],
 };
 ctx.lineWidth = 2;
+var BB = canvas.getBoundingClientRect();
+var offsetX = BB.left + 5; // change from canvas.offsetLeft
+var offsetY = 240 / 2; // change from canvas.offsetTop
+console.log(canvas.getBoundingClientRect());
+console.log(canvas.offsetLeft, canvas.offsetTop);
+console.log(offsetX, offsetY);
 
 function color(color_value) {
   ctx.strokeStyle = color_value;
@@ -25,7 +31,7 @@ function add_pixel() {
 }
 
 function reduce_pixel() {
-  if (ctx.lineWidth === 2) return;
+  if (ctx.lineWidth == 2) return;
   else ctx.lineWidth -= 1;
 }
 
@@ -44,12 +50,12 @@ function reset() {
   canvas_data = { pencil: [], line: [], rectangle: [], circle: [], eraser: [] };
 }
 
-// for the pencil tool
+// pencil tool
 
 function pencil() {
-  canvas.onmousedown = function (event) {
-    curX = event.clientX - canvas.offsetLeft;
-    curY = event.clientY - canvas.offsetTop;
+  canvas.onmousedown = function (e) {
+    curX = e.clientX - offsetX;
+    curY = e.clientY - offsetY;
     hold = true;
 
     prevX = curX;
@@ -60,8 +66,8 @@ function pencil() {
 
   canvas.onmousemove = function (e) {
     if (hold) {
-      curX = e.clientX - canvas.offsetLeft;
-      curY = e.clientY - canvas.offsetTop;
+      curX = e.clientX - offsetX;
+      curY = e.clientY - offsetY;
       draw();
     }
   };
@@ -80,7 +86,7 @@ function pencil() {
     canvas_data.pencil.push({
       startx: prevX,
       starty: prevY,
-      endX: curX,
+      endx: curX,
       endy: curY,
       thick: ctx.lineWidth,
       color: ctx.strokeStyle,
@@ -88,29 +94,29 @@ function pencil() {
   }
 }
 
-// Line Tool
+// line tool
 
 function line() {
   canvas.onmousedown = function (e) {
     img = ctx.getImageData(0, 0, width, height);
-    prevX = e.clientX - canvas.offsetLeft;
-    prevY = e.clientY - canvas.offsetTop;
+    prevX = e.clientX - offsetX;
+    prevY = e.clientY - offsetY;
     hold = true;
   };
 
   canvas.onmousemove = function (e) {
     if (hold) {
       ctx.putImageData(img, 0, 0);
-      curX = e.clientX - canvas.offsetLeft;
-      curY = e.clientY - canvas.offsetTop;
+      curX = e.clientX - offsetX;
+      curY = e.clientY - offsetY;
       ctx.beginPath();
       ctx.moveTo(prevX, prevY);
       ctx.lineTo(curX, curY);
       ctx.stroke();
       canvas_data.line.push({
-        startx: prevX,
+        starx: prevX,
         starty: prevY,
-        endX: curX,
+        endx: curX,
         endY: curY,
         thick: ctx.lineWidth,
         color: ctx.strokeStyle,
@@ -128,21 +134,21 @@ function line() {
   };
 }
 
-//rectangle tool
+// rectangle tool
 
 function rectangle() {
   canvas.onmousedown = function (e) {
     img = ctx.getImageData(0, 0, width, height);
-    prevX = e.clientX - canvas.offsetLeft;
-    prevY = e.clientY - canvas.offsetTop;
+    prevX = e.clientX - offsetX;
+    prevY = e.clientY - offsetY;
     hold = true;
   };
 
   canvas.onmousemove = function (e) {
     if (hold) {
       ctx.putImageData(img, 0, 0);
-      curX = e.clientX - canvas.offsetLeft - prevX;
-      curY = e.clientY - canvas.offsetTop - prevY;
+      curX = e.clientX - offsetX - prevX;
+      curY = e.clientY - offsetY - prevY;
       ctx.strokeRect(prevX, prevY, curX, curY);
       if (fill_value) {
         ctx.fillRect(prevX, prevY, curX, curY);
@@ -175,16 +181,16 @@ function rectangle() {
 function circle() {
   canvas.onmousedown = function (e) {
     img = ctx.getImageData(0, 0, width, height);
-    prevX = e.clientX - canvas.offsetLeft;
-    prevY = e.clientY - canvas.offsetTop;
+    prevX = e.clientX - offsetX;
+    prevY = e.clientY - offsetY;
     hold = true;
   };
 
   canvas.onmousemove = function (e) {
     if (hold) {
       ctx.putImageData(img, 0, 0);
-      curX = e.clientX - canvas.offsetLeft;
-      curY = e.clientY - canvas.offsetTop;
+      curX = e.clientX - offsetX;
+      curY = e.clientY - offsetY;
       ctx.beginPath();
       ctx.arc(
         Math.abs(curX + prevX) / 2,
@@ -223,8 +229,8 @@ function circle() {
 
 function eraser() {
   canvas.onmousedown = function (e) {
-    curX = e.clientX - canvas.offsetLeft;
-    curY = e.clientY - canvas.offsetTop;
+    curX = e.clientX - offsetX;
+    curY = e.clientY - offsetY;
     hold = true;
 
     prevX = curX;
@@ -235,8 +241,8 @@ function eraser() {
 
   canvas.onmousemove = function (e) {
     if (hold) {
-      curX = e.clientX - canvas.offsetLeft;
-      curY = e.clientY - canvas.offsetTop;
+      curX = e.clientX - offsetX;
+      curY = e.clientY - offsetY;
       draw();
     }
   };
@@ -263,8 +269,6 @@ function eraser() {
     });
   }
 }
-
-// save function
 
 function save() {
   var filename = document.getElementById("fname").value;
