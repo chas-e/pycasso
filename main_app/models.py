@@ -3,6 +3,7 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
 
+
 # tags see https://django-tagging.readthedocs.io/en/develop/
 # Create your models here.
 
@@ -15,9 +16,9 @@ MEDIA_TYPES = (
 )
 
 ARTIST_TYPES = (
-    (1, ('Photographer')),
-    (2, ('Painter')),
-    (3, ('Digital Illustrator')),
+    ('1', ('Photographer')),
+    ('2', ('Painter')),
+    ('3', ('Digital Illustrator')),
 )
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE,)
@@ -28,6 +29,9 @@ class Profile(models.Model):
     location = models.CharField(max_length=100)
     profile_img = models.CharField(max_length=100)
     points = models.IntegerField(default=1)
+
+    def get_absolute_url(self):
+        return reverse ('profile_detail', kwargs={'user_id': self.user.id})
 
 class Art(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
