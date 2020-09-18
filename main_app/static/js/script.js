@@ -16,7 +16,7 @@ var canvas_data = {
 ctx.lineWidth = 2;
 var BB = canvas.getBoundingClientRect();
 var offsetX = BB.left + 5; // change from canvas.offsetLeft
-var offsetY = 240 / 2; // change from canvas.offsetTop
+var offsetY = BB.top; // change from canvas.offsetTop
 console.log(canvas.getBoundingClientRect());
 console.log(canvas.offsetLeft, canvas.offsetTop);
 console.log(offsetX, offsetY);
@@ -274,7 +274,12 @@ function save() {
   var filename = document.getElementById("fname").value;
   var data = JSON.stringify(canvas_data);
   var image = canvas.toDataURL();
+  const painting = {
+    save_fname: filename,
+    save_cdata: data,
+    save_image: image,
+  };
 
-  $.post("/", { save_fname: filename, save_cdata: data, save_image: image });
+  $.post("/paint/", painting);
   alert(filename + " saved");
 }

@@ -70,9 +70,10 @@ class Photo(models.Model):
         return f'Photo for art_id: {self.art_id} @{self.url}'
 
 
-class Files(models.Model):
+class PaintFile(models.Model):
     name = models.CharField(max_length=30)
     image = models.TextField()
+    canvas_image = models.TextField()
 
     def __unicode__(self):
         return self.name

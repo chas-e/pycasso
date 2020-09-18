@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<p>
+    <h2>Saved Paintings</h2>
+</p>
+
+{% if files %}
+<ol>
+    {% for file in files %}
+    <li><p style="color: blue; cursor: pointer;"><img src="{{ file.canvas_image }}" alt=""></p></li>
+    {% endfor %}
+</ol>
+
+{% endif %}
+<form action="/search/" method="get">
+    <p><label>filename</label><input id="fname" type="text" name="filename">
+    <input type="submit" value="show"></p>
+</form>   
+
+{% load static %}
+    <script src="{% static 'js/files.js' %}"></script>
+
+{% endblock %}
