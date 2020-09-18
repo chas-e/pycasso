@@ -18,6 +18,8 @@ ARTIST_TYPES = (
     (2, ('Painter')),
     (3, ('Digital Illustrator')),
 )
+
+
 class Profile(models.Model):
     ARTIST_TYPES = (
         (1, ('Photographer')),
@@ -32,6 +34,7 @@ class Profile(models.Model):
     location = models.CharField(max_length=100)
     profile_img = models.CharField(max_length=100)
     points = models.IntegerField(default=1)
+
 
 class Art(models.Model):
     MEDIA_TYPES = (
@@ -56,7 +59,8 @@ class Art(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse ('art_index')
+        return reverse('art_index')
+
 
 class Photo(models.Model):
     url = models.CharField(max_length=200)
@@ -64,3 +68,11 @@ class Photo(models.Model):
 
     def __str__(self):
         return f'Photo for art_id: {self.art_id} @{self.url}'
+
+
+class Files(models.Model):
+    name = models.CharField(max_length=30)
+    image = models.TextField()
+
+    def __unicode__(self):
+        return self.name

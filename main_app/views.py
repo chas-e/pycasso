@@ -34,6 +34,17 @@ def signup(request):
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
 
+def paint(request):
+    if request.method == 'GET':
+        return render(request, 'paint.html')
+    elif request.method == 'POST':
+        filename = request.POST['fname']
+        data = request.POST['save_cdata']
+        image = request.POST['save_image']
+        file_data = Files(name=filename, image=data, canvas_image=image)
+        file_data.save()
+        return redirect('home')
+
 class ArtList(LoginRequiredMixin, ListView):
     model = Art
 

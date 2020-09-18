@@ -10,4 +10,8 @@ urlpatterns = [
     path('art/<int:pk>/', views.ArtDetail.as_view(), name='art_detail'),
     path('art/<int:pk>/update/', views.ArtUpdate.as_view(), name='art_update'),
     path('art/<int:pk>/delete/', views.ArtDelete.as_view(), name='art_delete'),
+    # for Paint App - Jack
+    path('paint/', views.paint, name='paint'),
+    # path('files/', views.files, name='files'),
+    # path('search/', views.search, name='search'),
 ]
