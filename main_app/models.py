@@ -20,8 +20,9 @@ ARTIST_TYPES = (
     (3, ('Digital Illustrator')),
 )
 class Profile(models.Model):
+
     user = models.OneToOneField(User, on_delete=models.CASCADE,)
-    bio = models.TextField(max_length=500)
+       bio = models.TextField(max_length=500)
     birthday = models.DateField()
     artist_type = models.CharField(max_length=25, choices=ARTIST_TYPES)
     is_public = models.BooleanField(default=True)
@@ -30,6 +31,7 @@ class Profile(models.Model):
     points = models.IntegerField(default=1)
 
 class Art(models.Model):
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     media_type = models.CharField(max_length=1, choices=MEDIA_TYPES)

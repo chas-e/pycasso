@@ -8,20 +8,42 @@
 
 {% else %}
 
-<h1> Add Artwork </h1>
+<h1 class="artworkh1"> Add Artwork </h1>
 {% endif %}
 
-<form action="" enctype="multipart/form-data" method="POST">
+<form action="" class="submission-wrapper"  method="POST">
     {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-    </table>
-    <br><br>
-    <input type="file" name="art-file" value="{{ object.url }}">
-    <br><br>
-    <input type="submit" value="Add Art">
-    <a href="{% url 'art_index' %}">Cancel</a>
+    <!-- <table class="fl w-100 ph0 fw6 "> -->
+    <div class="submission-form">
+        <div class="submission-title">
+            <label for="{{ form.title.id_for_label }}">Title</label>{{ form.title}}
+        </div>
+        <div class="submission-media">
+            <label for="{{ form.media_type.id_for_label }}">Type</label>{{ form.media_type}}
+        </div>
+        <div class="submission-genre">
+            <label for="{{ form.genre.id_for_label }}">Genre</label>{{ form.genre}}
+        </div>
+        <div class="submission-description">
+            <label for="{{ form.description.id_for_label }}">Description</label>{{ form.description}}
+        </div>
+        <div class="submission-color">
+            <label for="{{ form.colors_used.id_for_label }}">Colors</label>{{ form.colors_used}}
+        </div>
+        <div class="submission-karma">
+            <label for="{{ form.karma.id_for_label }}">Karma</label>{{ form.karma }}
+        </div>
+        <label for="{{ form.is_public.id_for_label }}">Public</label>{{ form.is_public }}
+        <div class="form-submit">
+            <input type="file" name="art-file" value="{{ object.url }}">
+            <input type="submit"  class="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 " value="Submit">
+            <a href="{% url 'art_index' %}" class=" add-button">Cancel</a>
+        </div>
+    </div>
 </form>
+    <!-- </table> -->
+    
+
 
 
 
