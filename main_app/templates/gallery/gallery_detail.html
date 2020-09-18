@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Art Details</h1>
+<section>
+    <div>
+        <img src="{{ art.url }}" alt="">
+    </div>
+    <div>
+        <h3>{{ art.title }}</h3>
+    </div>
+    <div>
+        <h4>Media type: {{ art.media_type }}</h4>
+        <h4>Genre: {{ art.genre }}</h4>
+    </div>
+    <div>
+        <h4>Colors used: {{ art.colors_used}}</h4>
+        <h4>Karma: {{ art.karma }}</h4>
+    </div>
+    <div>
+        <p>Description: {{ art.description }}</p>
+        <p>Date Posted: {{ art.date_posted }}</p>
+    </div>
+    <div>
+        <div>
+            <form action="{% url 'add_comment' art.id %}" method="POST">
+                {% csrf_token %}
+                {{ comment_form.as_p }}
+                <input type="submit" value="Add Comment">
+            </form>
+        </div>
+        <div>
+            {% for comment in art.comment_set.all %}
+            <p>Comment: {{ comment.comment }}</p>
+            <p>Rating: {{ comment.rating }}</p>
+            <p>date_created: {{ comment.date_created }}</p>
+            <a href="{% url 'comment_update' art.id comment.id %}">Edit Comment</a>
+            <a href="{% url 'comment_delete' art.id comment.id %}">Delete Comment</a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

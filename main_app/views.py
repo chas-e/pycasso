@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
@@ -11,7 +11,8 @@ import uuid
 import boto3
 from decouple import config 
 
-from .models import Art, Profile
+from .models import Art, Profile, Comment
+from .forms import CommentForm
 
 S3_BASE_URL = config('S3_BASE_URL')
 BUCKET = config('BUCKET')
@@ -66,5 +67,33 @@ class ArtDelete(LoginRequiredMixin, DeleteView):
     model = Art
     success_url = '/art/'
 
+def gallery_index(request):
+    art = Art.objects.all()
+    return render(request, 'gallery/gallery_index.html', { 'art': art })
+
+def gallery_detail(request, art_id):
+    art = Art.objects.get(id=art_id)
+    comment_form = CommentForm()
+    return render(request, 'gallery/gallery_detail.html', { 'art': art, 'comment_form': comment_form })
+
+@login_required
+def add_comment(request, art_id):
+    form = CommentForm(request.POST)
+
+    if form.is_valid():
+        new_comment = form.save(commit=False)
+        new_comment.art_id = art_id
+        new_comment.user = request.user
+        new_comment.save()
+        print(new_comment, request.user)
+    return redirect('gallery_detail', art_id=art_id)
+
+class CommentUpdate(LoginRequiredMixin, UpdateView):
+    model = Comment
+    fields = ['comment', 'rating', 'date_created']
+    
+class CommentDelete(LoginRequiredMixin, DeleteView):
+    model = Comment
+    success_url = '/gallery/'
         
                 

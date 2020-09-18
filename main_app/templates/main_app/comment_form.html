@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="" method="POST">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <br><br>
+    <input type="submit" value="Update Comment">
+    <a href="{% url 'gallery_detail' object.art.id %}">Cancel</a>
+</form>
+
+
+{% endblock %}
