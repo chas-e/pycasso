@@ -133,14 +133,14 @@ class ProfileUpdate(LoginRequiredMixin, UpdateView):
             try:
                 s3.upload_fileobj(img_file, BUCKET, key)
                 url = f'{S3_BASE_URL}{BUCKET}/{key}'
-                form.instance.url = url
+                form.instance.profile_img = url
             except:
                 print('An error ocurred uploading the file to s3.')
-        form.instance.user = self.request.user
         return super().form_valid(form)
 
 def profile_detail(request, user_id):
     profile = Profile.objects.get(user=user_id)
+    print(profile)
     return render(request, 'profile/detail.html', { 'profile': profile })
     
  

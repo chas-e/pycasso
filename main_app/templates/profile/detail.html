@@ -2,13 +2,11 @@
 
 {% block content %}
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"
-  integrity="sha512-HzAEuXwhLxwm/Jj+5ecdjzrRVrjuh2ZeIxyT1Ln37TO5pWNMnKBuU7cfd1wvRQ/k86w1oC174Yk1T7aRlBpIcA=="
-  crossorigin="anonymous"></script>
+
 
 <section class="profile-img-section">
   <div class="profile-img">
-    <img src="{{ object.profile_img }}" alt="">
+    <img src="{{ profile.profile_img }}" alt="">
   </div>
   <div class="profile-page-detail">
     <div>
@@ -19,7 +17,7 @@
       <p>{{ profile.birthday }}</p>
       <p>{{ profile.artist_type }}</p>
       <p>{{ profile.location }}</p>
-      <a class="" href="{% url 'profile_update' user.id %}" title="Edit Profile">Edit Profile</a>
+      <a class="" href="{% url 'profile_update' profile.id %}" title="Edit Profile">Edit Profile</a>
     </div>
   </div>
 </section>
