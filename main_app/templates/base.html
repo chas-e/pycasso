@@ -22,6 +22,7 @@
                 {% if user.is_authenticated %}
                 <li>
                     <a class="link dim white justify-end" href="{% url 'art_index' %}" title="View Art">View Art</a>
+                    <a class="link dim white justify-end" href="{% url 'profile_detail' user.id %}" title="view">View Profile</a>
                 </li>
                 <li>
                     <a class="link dim white justify-end" href="{% url 'art_create' %}" title="Add Art">Add Art</a>

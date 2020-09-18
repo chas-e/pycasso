@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
 
+
 # tags see https://django-tagging.readthedocs.io/en/develop/
 # Create your models here.
 
@@ -14,40 +15,24 @@ MEDIA_TYPES = (
 )
 
 ARTIST_TYPES = (
-    (1, ('Photographer')),
-    (2, ('Painter')),
-    (3, ('Digital Illustrator')),
+    ('1', ('Photographer')),
+    ('2', ('Painter')),
+    ('3', ('Digital Illustrator')),
 )
 class Profile(models.Model):
-<<<<<<< HEAD
-    ARTIST_TYPES = (
-        (1, ('Photographer')),
-        (2, ('Painter')),
-        (3, ('Digital Illustrator'))
-    )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-=======
-    user = models.ForeignKey(User, on_delete=models.CASCADE,)
->>>>>>> c107d9c9b2982bf19ecbd7094562b9f133993c4e
     bio = models.TextField(max_length=500)
-    birthday = models.DateField()
-    artist_type = models.CharField(max_length=25, choices=ARTIST_TYPES)
+    birthday = models.DateField(default='2020-09-17')
+    artist_type = models.CharField(max_length=25, choices=ARTIST_TYPES, default=MEDIA_TYPES[0][0])
     is_public = models.BooleanField(default=True)
     location = models.CharField(max_length=100)
     profile_img = models.CharField(max_length=100)
     points = models.IntegerField(default=1)
 
+    def get_absolute_url(self):
+        return reverse ('profile_detail', kwargs={'user_id': self.user.id})
+
 class Art(models.Model):
-<<<<<<< HEAD
-    MEDIA_TYPES = (
-        ('C', 'Camera Photography'),
-        ('D', 'Digital Artwork'),
-        ('J', 'CSS codepen'),
-        ('P', 'Painting'),
-        ('S', 'Sketch Drawing'),
-    )
-=======
->>>>>>> c107d9c9b2982bf19ecbd7094562b9f133993c4e
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     media_type = models.CharField(max_length=1, choices=MEDIA_TYPES)

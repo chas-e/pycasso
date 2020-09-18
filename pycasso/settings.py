@@ -125,14 +125,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-<<<<<<< HEAD
-STATICFILES_DIRS = [
-    BASE_DIR / 'static',
-    '/var/www/static/',
-]
 
-=======
->>>>>>> c107d9c9b2982bf19ecbd7094562b9f133993c4e
+
+
 LOGIN_REDIRECT_URL = '/'
 
 LOGOUT_REDIRECT_URL = '/'
