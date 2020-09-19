@@ -11,36 +11,33 @@
 </head>
 
 <body class="avenir">
-    <header class="bg-gold w-100 ph3 pv3 pv4-ns ph4-m ph5-l">
+    <header class="bg w-100 ph3 pv3 pv1-ns ph4-m ph5-l">
         <nav class="f6 fw6">
             <ul>
                 <li class="tl">
-                    <a class="link dim white justify-start" href="{% url 'home' %}" title="Home">Pycasso</a>
-                </li>
-                <li class="tl">
+                    <a class="link dim white justify-start" href="{% url 'home' %}" title="Home"><img src="https://imgur.com/kdH40nj.png" height="50px"></a>
                     <a class="link dim white justify-start" href="{% url 'gallery_index' %}" title="Gallery">Gallery</a>
-                </li>
-            </ul>
-            <ul class="tr">
                 {% if user.is_authenticated %}
-                <li>
                     <a class="link dim white justify-end" href="{% url 'art_index' %}" title="View Art">View Art</a>
                     <a class="link dim white justify-end" href="{% url 'profile_detail' user.id %}" title="view">View Profile</a>
-                </li>
-                <li>
                     <a class="link dim white justify-end" href="{% url 'art_create' %}" title="Add Art">Add Art</a>
-                </li>
-                <li>
                     <a class="link dim white justify-end" href="{% url 'logout' %}" title="Log Out">Log Out</a>
                 </li>
+                
+            </ul>
+            <ul class="tr">
+                <li>
                 {% else %}
-                <li>
                     <a class="link dim white justify-end" href="{% url 'signup'%}" title="Sign Up">Sign Up</a>
+                    <a class="link dim white justify-end" href="{% url 'login'%}" title="Log In">Log In</a>
+                    {% endif %}
                 </li>
                 <li>
-                    <a class="link dim white justify-end" href="{% url 'login'%}" title="Log In">Log In</a>
                 </li>
-                {% endif %}
+                <li>
+                </li>
+                <li>
+                </li>
             </ul>
         </nav>
     </header>
@@ -48,7 +45,7 @@
         {% block content %}
         {% endblock %}
     </main>
-    <footer class="bg-dark-red white-80 pv3 ph4 tc">
+    <footer class="bg white-80 pv3 ph4 tc">
         <p class="f6">
             <span class="dib mr4 mr5-ns center">© 2020 Pycasso</span>
             <span>hello@pycasso.com</span>

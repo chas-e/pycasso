@@ -54,7 +54,8 @@ class ArtCreate(LoginRequiredMixin, CreateView):
                 s3.upload_fileobj(art_file, BUCKET, key)
                 url = f'{S3_BASE_URL}{BUCKET}/{key}'
                 form.instance.url = url
-            except:
+            except Exception as e:
+                print(e)
                 print('An error ocurred uploading the file to s3.')
         form.instance.user = self.request.user
         return super().form_valid(form)

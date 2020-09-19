@@ -21,18 +21,10 @@ ARTIST_TYPES = (
     ('3', ('Digital Illustrator')),
 )
 class Profile(models.Model):
-<<<<<<< HEAD
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(max_length=500)
     birthday = models.DateField(default='2020-09-17')
     artist_type = models.CharField(max_length=25, choices=ARTIST_TYPES, default=MEDIA_TYPES[0][0])
-=======
-
-    user = models.OneToOneField(User, on_delete=models.CASCADE,)
-       bio = models.TextField(max_length=500)
-    birthday = models.DateField()
-    artist_type = models.CharField(max_length=25, choices=ARTIST_TYPES)
->>>>>>> d6b7b0d26e35c2b9c4b665990a1074e65bfd0fcb
     is_public = models.BooleanField(default=True)
     location = models.CharField(max_length=100)
     profile_img = models.CharField(max_length=100)
@@ -42,10 +34,6 @@ class Profile(models.Model):
         return reverse ('profile_detail', kwargs={'user_id': self.user.id})
 
 class Art(models.Model):
-<<<<<<< HEAD
-=======
-
->>>>>>> d6b7b0d26e35c2b9c4b665990a1074e65bfd0fcb
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     media_type = models.CharField(max_length=1, choices=MEDIA_TYPES)
