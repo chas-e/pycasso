@@ -15,7 +15,7 @@
     </div>
     <div>
       <p>{{ profile.birthday }}</p>
-      <p>{{ profile.artist_type }}</p>
+      <p>{{ profile.get_artist_type_display }}</p>
       <p>{{ profile.location }}</p>
       <a class="" href="{% url 'profile_update' profile.id %}" title="Edit Profile">Edit Profile</a>
     </div>
