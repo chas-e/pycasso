@@ -11,5 +11,13 @@
     <a href="{% url 'gallery_detail' object.art.id %}">Cancel</a>
 </form>
 
+<script>
+    $(function () {
+        $('#id_date_created').datepicker({
+            format: 'yy - mm - dd'
+        });
+    });
+</script>
+
 
 {% endblock %}
