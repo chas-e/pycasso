@@ -1,22 +1,42 @@
 {% extends 'base.html' %}
-
 {% block content %}
+<<<<<<< HEAD
 
 
 <main class="pa4 black-80">
+<<<<<<< HEAD
+        <form action="{% url 'login' %}"  class="measure center"  method='POST'>
+        <fieldset id="login" class="ba b--transparent ph0 mh0"></fieldset>
+        <legend class="f4 fw6 ph0 mh0">Log In</legend>
+             <div class="mt3">
+                {% csrf_token %}
+                {{ form.as_p }}
+                
+                <input class="pa2 input-reset ba bg-transparent hover-bg-red hover-white w-100" type="submit" name="login"  id="login" value="login">
+                <input type="hidden" name="next" value="{{ next }}">
+              </div>
+            
+=======
   <form action="{% url 'login' %}" class="measure center" method='POST'>
+=======
+<!-- <h1>Login</h1> -->
+<main class='pa4 black-80'>
+  <form action="{% url 'login' %}" class="measure center" method=“POST”>
+>>>>>>> 02b3e9e7e7d4860ed2e0be2a0364859925a55135
     <fieldset id="login" class="ba b--transparent ph0 mh0"></fieldset>
     <legend class="f4 fw6 ph0 mh0">Log In</legend>
-    <div class="mt3">
+    <div class='mt3'>
       {% csrf_token %}
       {{ form.as_p }}
-
       <input class="pa2 input-reset ba bg-transparent hover-bg-red hover-white w-100" type="submit" name="login"
         id="login" value="login">
       <input type="hidden" name="next" value="{{ next }}">
     </div>
+<<<<<<< HEAD
+>>>>>>> 9cb665227b98f2f0c9e84f49a253bc92ac50dae8
+=======
+>>>>>>> 02b3e9e7e7d4860ed2e0be2a0364859925a55135
   </form>
   </div>
 </main>
-
 {% endblock %}

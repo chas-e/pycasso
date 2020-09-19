@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<p>
+    <h2>Saved Paintings</h2>
+</p>
+
+{% if files %}
+<ol>
+    {% for file in files %}
+    <li><p style="color: blue; cursor: pointer;">{{ file.name }}</p>
+        <img style='background-color: white' src="{{ file.canvas_image }}" alt="">
+    </li>
+    {% endfor %}
+</ol>
+{% endif %}
+
+{% endblock %}

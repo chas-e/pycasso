@@ -8,13 +8,15 @@
 <h1>Profile</h1>
 {% endif %}
 
-<form action="" enctype="multipart/form-data" method="POST">
-    {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-    </table>
-    <input type="file" name="profile-img" value="{{ object.profile_img }}">
-    <input class="btn" type="submit" value="Submit!">
+<form action="" class="art-form-wrapper"  enctype="multipart/form-data" method="post">
+    <div class="add-art-div justify-center-ns">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input class="btn" type="submit" value="Submit!">
+        <input type="file" name="profile-img" value="{{ object.profile_img }}">
+    </div>
 </form>
 
 {% endblock %}
