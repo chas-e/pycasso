@@ -7,7 +7,9 @@
 {% if files %}
 <ol>
     {% for file in files %}
-    <li><p style="color: blue; cursor: pointer;"><img src="{{ file.canvas_image }}" alt=""></p></li>
+    <li><p style="color: blue; cursor: pointer;">{{ file.name }}</p>
+        <img style='background-color: white' src="{{ file.canvas_image }}" alt="">
+    </li>
     {% endfor %}
 </ol>
 
