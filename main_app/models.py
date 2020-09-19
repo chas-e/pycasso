@@ -20,16 +20,13 @@ ARTIST_TYPES = (
     ('2', ('Painter')),
     ('3', ('Digital Illustrator')),
 )
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(max_length=500)
-<<<<<<< HEAD
     birthday = models.DateField(default='2020-09-17')
     artist_type = models.CharField(max_length=25, choices=ARTIST_TYPES, default=MEDIA_TYPES[0][0])
-=======
-    birthday = models.DateField()
-    artist_type = models.CharField(max_length=25, choices=ARTIST_TYPES)
->>>>>>> 9cb665227b98f2f0c9e84f49a253bc92ac50dae8
     is_public = models.BooleanField(default=True)
     location = models.CharField(max_length=100)
     profile_img = models.CharField(max_length=100)
@@ -68,3 +65,14 @@ class Comment(models.Model):
 
     def get_absolute_url(self):
         return reverse('gallery_detail', kwargs={ 'art_id': self.art.id })
+
+
+
+
+class PaintFile(models.Model):
+    name = models.CharField(max_length=30)
+    image = models.TextField()
+    canvas_image = models.TextField()
+
+    def __unicode__(self):
+        return self.name

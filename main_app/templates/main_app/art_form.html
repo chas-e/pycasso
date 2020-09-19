@@ -6,7 +6,6 @@
 
     <h1>Edit {{ object.name }}</h1>
 {% else %}
-<<<<<<< HEAD
     <h1> Add Artwork </h1>
 {% endif %}
     <form action='' class="art-form-wrapper" enctype='multipart/form-data' method='POST'>
@@ -22,24 +21,4 @@
             <a class="add-form-a" href="{% url 'art_index' %}">Cancel</a>
         </div>
     </form>
-=======
-
-<h1> Add Artwork </h1>
-{% endif %}
-
-<form action="" enctype="multipart/form-data" method="POST">
-    {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-    </table>
-    <br><br>
-    <input type="file" name="art-file" value="{{ object.url }}">
-    <br><br>
-    <input type="submit" value="Add Art">
-    <a href="{% url 'art_index' %}">Cancel</a>
-</form>
-
-
-
->>>>>>> 9cb665227b98f2f0c9e84f49a253bc92ac50dae8
 {% endblock %}
