@@ -2,12 +2,17 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    background-color: rgb(252, 245, 237); 
+    background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+    background-color: rgb(253, 249, 245); 
     font-family: 'avenir next', avenir, sans-serif;
 }
 
 main {
     flex: 1 0 auto;
+}
+
+.bg{
+    background-color: #7aacbb;
 }
 
 nav {
@@ -43,83 +48,94 @@ footer {
     letter-spacing: .1em;
 }
 
-.artworkh1{
+.artworkh1 {
     color: rgba(233, 172, 167, 0.8);
 }
 
 
 /* add art page */
 
-.submission-form{
-    max-width: 500px;
-    box-shadow: 0 1px 5px rgb(138, 137, 137);   
-    background-color: rgb(241, 227, 215);
-    /* padding-bottom: 2px;      */
-    
+.art-form-wrapper{
+    display: grid;
+    justify-items: center;
+    padding-bottom: 5px;
 }
-.submission-form label{
+
+.add-art-div{
+    max-width: 500px;
+    box-shadow: 0 1px 5px rgb(138, 137, 137);
+    background-color: rgb(241, 227, 215);
+    display: grid;
+    justify-items: center;
+    padding-bottom: 2vh;
+}
+
+.add-art table {
+    display: grid;
+    justify-items: center;
+}
+
+th {
+    color: rgb(144, 125, 112);
+}
+.add-form label{
     display: block;
 }
 
-.submission-title input{
+.add-form input{
     border: none;
     outline: none;
 }
 
-.submission-media select{
+.add-form select{
     border: none;
     outline: none;
 }
 
-.submission-genre input{
+.add-form input{
     border: none;
     outline: none;
 }
 
-.submission-description textarea{
+.add-form textarea{
     border: none;
     outline: none;
+    resize: none;
 }
 
-.submission-color textarea{
-    border: none;
-    outline: none;
-}
 
-.submission-karma input{
-    border: none;
-    outline: none;
-}
 
-.form-submit :hover{
-    background-color: rgb(20, 158, 8);
+.add-form-a{
+    background-color: rgb(150, 112, 56);
     color: white;
+    padding: 5px;
+    border-radius: 5px;
 }
 
 .add-button{
-    padding: 6px 6px 6px 6px;
-    background-color: rgb(241, 201, 23);
+    border-style: none;
+    border-radius: 5px;
+    background-color: rgb(241, 201, 23);    
 }
 
 /* profile page styling */
 
-.profile-img-section{
+.profile-img-section {
     height: 200vh;
-    display: flex;    
+    display: flex;
 }
 
-.profile-img{
+.profile-img {
     width: 50%;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0!important;
-    background-image: url("https://imgur.com/4Oimra8.jpg");  
+    margin: 0 !important;
     background-size: 105vh;
 }
 
-.profile-page-detail{
+.profile-page-detail {
     width: 50%;
 }
 
@@ -130,4 +146,45 @@ footer {
     justify-content: space-around;
     align-items: center;
     background-color: grey;
+}
+
+/* public art styling */
+
+#div{
+    padding: 2px;
+}
+/* art detail styling */ 
+
+.art-img-section{
+    height: 200vh;
+    display: flex;    
+}
+
+
+.art-img{
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0!important;     
+}
+
+.art-img img{
+    max-width: 100%;
+    height: calc(100vh - 16px);
+    box-sizing: border-box;
+}
+
+.art-page-detail{
+    width: 50%;
+}
+
+.art-page-detail div {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    
 }
