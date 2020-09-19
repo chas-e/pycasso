@@ -7,6 +7,7 @@
     <div class="art-img">
         <img src="{{ object.url }}" alt="">
     </div>
+<<<<<<< HEAD
     <div class="art-page-detail">
         <div>
             <h3>{{ object.title }}</h3>
@@ -21,6 +22,26 @@
             <a href="{% url 'art_update' object.id %}">Update Art</a>
             <a href="{% url 'art_delete' object.id %}">Delete Art</a>
         </div>
+=======
+    <div>
+        <h3>{{ object.title }}</h3>
+    </div>
+    <div>
+        <h4>Media type: {{ object.get_media_type_display }}</h4>
+        <h4>Genre: {{ object.genre }}</h4>
+    </div>
+    <div>
+        <h4>Colors used: {{object.colors_used}}</h4>
+        <h4>Karma: {{ object.karma }}</h4>
+    </div>
+    <div>
+        <p>Description: {{ object.description }}</p>
+        <p>Date Posted: {{ object.date_posted }} </p>
+    </div>
+    <div>
+        <a href="{% url 'art_update' object.id %}">Update Art</a>
+        <a href="{% url 'art_delete' object.id %}">Delete Art</a>
+>>>>>>> 9cb665227b98f2f0c9e84f49a253bc92ac50dae8
     </div>
 </section>
 

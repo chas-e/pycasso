@@ -3,11 +3,12 @@
 {% block content %}
 
 {% if object %}
-    <h1>Edit<span class="teal-text">{{object.name}}</span></h1>
+<h1>Edit<span class="teal-text">{{ object.name }}</span></h1>
 {% else %}
-    <h1>Profile</h1> 
+<h1>Profile</h1>
 {% endif %}
 
+<<<<<<< HEAD
 <form action="" class="art-form-wrapper"  enctype="multipart/form-data" method="post">
     <div class="add-art-div justify-center-ns">
         {% csrf_token %}
@@ -17,6 +18,15 @@
         <input class="btn" type="submit" value="Submit!">
         <input type="file" name="profile-img" value="{{ object.profile_img }}">
     </div>
+=======
+<form action="" enctype="multipart/form-data" method="POST">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <input type="file" name="profile-img" value="{{ object.profile_img }}">
+    <input class="btn" type="submit" value="Submit!">
+>>>>>>> 9cb665227b98f2f0c9e84f49a253bc92ac50dae8
 </form>
 
 {% endblock %}

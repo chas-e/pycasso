@@ -2,8 +2,12 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+<<<<<<< HEAD
     background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
     background-color: rgb(253, 249, 245); 
+=======
+    background-color: rgb(252, 245, 237);
+>>>>>>> 9cb665227b98f2f0c9e84f49a253bc92ac50dae8
     font-family: 'avenir next', avenir, sans-serif;
 }
 
@@ -48,13 +52,14 @@ footer {
     letter-spacing: .1em;
 }
 
-.artworkh1{
+.artworkh1 {
     color: rgba(233, 172, 167, 0.8);
 }
 
 
 /* add art page */
 
+<<<<<<< HEAD
 .art-form-wrapper{
     display: grid;
     justify-items: center;
@@ -62,9 +67,13 @@ footer {
 }
 
 .add-art-div{
+=======
+.submission-form {
+>>>>>>> 9cb665227b98f2f0c9e84f49a253bc92ac50dae8
     max-width: 500px;
-    box-shadow: 0 1px 5px rgb(138, 137, 137);   
+    box-shadow: 0 1px 5px rgb(138, 137, 137);
     background-color: rgb(241, 227, 215);
+<<<<<<< HEAD
     display: grid;
     justify-items: center;
     padding-bottom: 2vh;
@@ -83,60 +92,103 @@ th {
 }
 
 .add-form input{
+=======
+    /* padding-bottom: 2px;      */
+
+}
+
+.submission-form label {
+    display: block;
+}
+
+.submission-title input {
     border: none;
     outline: none;
 }
 
+.submission-media select {
+    border: none;
+    outline: none;
+}
+
+.submission-genre input {
+>>>>>>> 9cb665227b98f2f0c9e84f49a253bc92ac50dae8
+    border: none;
+    outline: none;
+}
+
+<<<<<<< HEAD
 .add-form select{
+=======
+.submission-description textarea {
+>>>>>>> 9cb665227b98f2f0c9e84f49a253bc92ac50dae8
     border: none;
     outline: none;
 }
 
+<<<<<<< HEAD
 .add-form input{
+=======
+.submission-color textarea {
+>>>>>>> 9cb665227b98f2f0c9e84f49a253bc92ac50dae8
     border: none;
     outline: none;
 }
 
+<<<<<<< HEAD
 .add-form textarea{
+=======
+.submission-karma input {
+>>>>>>> 9cb665227b98f2f0c9e84f49a253bc92ac50dae8
     border: none;
     outline: none;
     resize: none;
 }
 
+<<<<<<< HEAD
 
 
 .add-form-a{
     background-color: rgb(150, 112, 56);
+=======
+.form-submit :hover {
+    background-color: rgb(20, 158, 8);
+>>>>>>> 9cb665227b98f2f0c9e84f49a253bc92ac50dae8
     color: white;
     padding: 5px;
     border-radius: 5px;
 }
 
+<<<<<<< HEAD
 .add-button{
     border-style: none;
     border-radius: 5px;
     background-color: rgb(241, 201, 23);    
+=======
+.add-button {
+    padding: 6px 6px 6px 6px;
+    background-color: rgb(241, 201, 23);
+>>>>>>> 9cb665227b98f2f0c9e84f49a253bc92ac50dae8
 }
 
 /* profile page styling */
 
-.profile-img-section{
+.profile-img-section {
     height: 200vh;
-    display: flex;    
+    display: flex;
 }
 
-.profile-img{
+.profile-img {
     width: 50%;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0!important;
-    background-image: url("https://imgur.com/4Oimra8.jpg");  
+    margin: 0 !important;
     background-size: 105vh;
 }
 
-.profile-page-detail{
+.profile-page-detail {
     width: 50%;
 }
 
