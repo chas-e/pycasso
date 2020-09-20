@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
 <form action="" method="POST">
     {% csrf_token %}
     <table>
@@ -13,9 +14,7 @@
 
 <script>
     $(function () {
-        $('#id_date_created').datepicker({
-            format: 'yy - mm - dd'
-        });
+        $("#id_date_created").datepicker();
     });
 </script>
 

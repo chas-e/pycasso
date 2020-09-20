@@ -6,12 +6,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pycasso</title>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
-        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"
         integrity="sha512-HzAEuXwhLxwm/Jj+5ecdjzrRVrjuh2ZeIxyT1Ln37TO5pWNMnKBuU7cfd1wvRQ/k86w1oC174Yk1T7aRlBpIcA=="
         crossorigin="anonymous"></script>
@@ -23,24 +22,26 @@
         <nav class="f6 fw6">
             <ul>
                 <li class="tl">
-                    <a class="link dim white justify-start" href="{% url 'home' %}" title="Home"><img src="https://imgur.com/kdH40nj.png" height="50px"></a>
+                    <a class="link dim white justify-start" href="{% url 'home' %}" title="Home"><img
+                            src="https://imgur.com/kdH40nj.png" height="50px"></a>
                     <a class="link dim white justify-start" href="{% url 'gallery_index' %}" title="Gallery">Gallery</a>
-            {% if user.is_authenticated %}
+                    {% if user.is_authenticated %}
                     <a class="link dim white justify-end" href="{% url 'art_index' %}" title="View Art">View Art</a>
-                    <a class="link dim white justify-end" href="{% url 'profile_detail' user.id %}" title="view">View Profile</a>
+                    <a class="link dim white justify-end" href="{% url 'profile_detail' user.id %}" title="view">View
+                        Profile</a>
                     <a class="link dim white justify-end" href="{% url 'art_create' %}" title="Add Art">Add Art</a>
                     <a class="link dim white justify-end" href="{% url 'logout' %}" title="Log Out">Log Out</a>
                     <a class="link dim white justify-end" href="{% url 'paint' %}" title="Paint">Paint</a>
                     <a class="link dim white justify-end" href="{% url 'files' %}" title="Files">Paint Gallery</a>
                 </li>
-                
+
             </ul>
             <ul class="tr">
                 <li>
-                {% else %}
+                    {% else %}
                     <a class="link dim white justify-end" href="{% url 'signup'%}" title="Sign Up">Sign Up</a>
                     <a class="link dim white justify-end" href="{% url 'login'%}" title="Log In">Log In</a>
-                {% endif %}
+                    {% endif %}
                 </li>
                 <li>
                 </li>

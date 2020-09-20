@@ -4,21 +4,29 @@
 {% block content %}
 {% if object %}
 
-    <h1>Edit {{ object.name }}</h1>
+<h1>Edit {{ object.name }}</h1>
 {% else %}
-    <h1> Add Artwork </h1>
+<h1> Add Artwork </h1>
 {% endif %}
-    <form action='' class="art-form-wrapper" enctype='multipart/form-data' method='POST'>
-        <div class="add-art-div justify-center-ns">
+<form action='' class="art-form-wrapper" enctype='multipart/form-data' method='POST'>
+    <div class="add-art-div justify-center-ns">
         {% csrf_token %}
-            <table class="add-form">
-                {{ form.as_table }}
-            </table>
-            <br><br>
-            <input type='file' name='art-file' value='{{ object.url }}'>
-            <br><br>
-            <input type='submit' class="add-button"  value='Add Art'>
-            <a class="add-form-a" href="{% url 'art_index' %}">Cancel</a>
-        </div>
-    </form>
+        <table class="add-form">
+            {{ form.as_table }}
+        </table>
+        <br><br>
+        <input type='file' name='art-file' value='{{ object.url }}'>
+        <br><br>
+        <input type='submit' class="add-button" value='Add Art'>
+        <a class="add-form-a" href="{% url 'art_index' %}">Cancel</a>
+    </div>
+</form>
+
+<script>
+    $(function () {
+        $("#id_date_posted").datepicker();
+    });
+</script>
+
+
 {% endblock %}
