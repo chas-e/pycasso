@@ -128,3 +128,5 @@ STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/'
 
 LOGOUT_REDIRECT_URL = '/'
+
+ASGI_APPLICATION = 'pycasso.routing.application'

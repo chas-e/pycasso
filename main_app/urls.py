@@ -20,6 +20,6 @@ urlpatterns = [
     path('gallery/<int:art_id>/comment/<int:pk>/delete/', views.CommentDelete.as_view(), name="comment_delete"),
     path('paint/', views.paint, name='paint'),
     path('files/', views.files, name='files'),
-    path('codepen/', views.codepen, name='codepen')
-
+    path('codepen/', views.codepen, name='codepen'),
+    path('paint_chat/', views.paint_index, name='paint_index')
 ]

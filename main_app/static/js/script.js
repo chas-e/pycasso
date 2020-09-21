@@ -54,8 +54,10 @@ function reset() {
 
 function pencil() {
   canvas.onmousedown = function (e) {
+
     curX = e.clientX - offsetX;
-    curY = e.clientY - offsetY;
+    // curX = e.pageX;
+    // curY = e.pageY;
     hold = true;
 
     prevX = curX;
@@ -68,6 +70,8 @@ function pencil() {
     if (hold) {
       curX = e.clientX - offsetX;
       curY = e.clientY - offsetY;
+      // curX = e.pageX;
+      // curY = e.pageY;
       draw();
     }
   };
@@ -283,3 +287,47 @@ function save() {
   $.post("/paint/", painting);
   alert(filename + " saved");
 }
+
+// Chatroom
+
+const roomName = JSON.parse($("#room-name").textContent);
+
+const drawSocket = new WebSocket(
+  "ws://" + window.location.host + "ws/chat/" + roomName + "/"
+);
+
+drawSocket.onopen = function (e) {
+  alert("[open] Connection established");
+  alert("Sending to server");
+  drawSocket.send("Welcome to paint chat!");
+};
+
+drawSocket.onmessage = function (event) {
+  alert(`[message] Data received from server: ${event.data}`);
+  if (event.data == "reset") {
+    reset();
+    return;
+  }
+  d = JSON.parse(event.data);
+  console.log(d);
+
+  for (var i = 0; i < d.length; i++) {
+    ctx.fillRect();
+  }
+};
+
+drawSocket.onclose = function (event) {
+  if (event.wasClean) {
+    alert(
+      `[close] Connection closed cleanly, code=${event.code} reason=${event.reason}`
+    );
+  } else {
+    // e.g. server process killed or network down
+    // event.code is usually 1006 in this case
+    alert("[close] Connection died");
+  }
+};
+
+drawSocket.onerror = function (error) {
+  alert(`[error] ${error.message}`);
+};

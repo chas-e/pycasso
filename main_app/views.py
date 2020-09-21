@@ -76,7 +76,7 @@ class ArtCreate(LoginRequiredMixin, CreateView):
     model = Art
     fields = ['title', 'media_type', 'genre', 'description',
               'colors_used', 'karma', 'date_posted', 'is_public']
-              
+
     def form_valid(self, form):
         art_file = self.request.FILES.get('art-file', None)
         if art_file:
@@ -103,12 +103,12 @@ class ArtUpdate(LoginRequiredMixin, UpdateView):
     fields = ['title', 'media_type', 'genre', 'description',
               'colors_used', 'karma', 'date_posted', 'is_public']
 
-
     def form_valid(self, form):
         art_file = self.request.FILES.get('art-file', None)
         if art_file:
             s3 = boto3.client('s3')
-            key = uuid.uuid4().hex[:6] + art_file.name[art_file.name.rfind('.'):]
+            key = uuid.uuid4().hex[:6] + \
+                art_file.name[art_file.name.rfind('.'):]
             try:
                 s3.upload_fileobj(art_file, BUCKET, key)
                 url = f'{S3_BASE_URL}{BUCKET}/{key}'
@@ -118,18 +118,22 @@ class ArtUpdate(LoginRequiredMixin, UpdateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
+
 class ArtDelete(LoginRequiredMixin, DeleteView):
     model = Art
     success_url = '/art/'
 
+
 def gallery_index(request):
     art = Art.objects.all()
-    return render(request, 'gallery/gallery_index.html', { 'art': art })
+    return render(request, 'gallery/gallery_index.html', {'art': art})
+
 
 def gallery_detail(request, art_id):
     art = Art.objects.get(id=art_id)
     comment_form = CommentForm()
-    return render(request, 'gallery/gallery_detail.html', { 'art': art, 'comment_form': comment_form })
+    return render(request, 'gallery/gallery_detail.html', {'art': art, 'comment_form': comment_form})
+
 
 @login_required
 def add_comment(request, art_id):
@@ -143,31 +147,38 @@ def add_comment(request, art_id):
         print(new_comment, request.user)
     return redirect('gallery_detail', art_id=art_id)
 
+
 class CommentUpdate(LoginRequiredMixin, UpdateView):
     model = Comment
     fields = ['comment', 'rating', 'date_created']
-    
+
+
 class CommentDelete(LoginRequiredMixin, DeleteView):
     model = Comment
     success_url = '/gallery/'
-        
+
+
 class ProfileCreate(LoginRequiredMixin, CreateView):
     model = Profile
-    fields = ['bio', 'birthday', 'artist_type', 'is_public', 'location', 'points']
+    fields = ['bio', 'birthday', 'artist_type',
+              'is_public', 'location', 'points']
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
+
 class ProfileUpdate(LoginRequiredMixin, UpdateView):
     model = Profile
-    fields = ['bio', 'birthday', 'artist_type', 'is_public', 'location', 'points']
+    fields = ['bio', 'birthday', 'artist_type',
+              'is_public', 'location', 'points']
 
     def form_valid(self, form):
         img_file = self.request.FILES.get('profile-img', None)
         if img_file:
             s3 = boto3.client('s3')
-            key = uuid.uuid4().hex[:6] + img_file.name[img_file.name.rfind('.'):]
+            key = uuid.uuid4().hex[:6] + \
+                img_file.name[img_file.name.rfind('.'):]
             try:
                 s3.upload_fileobj(img_file, BUCKET, key)
                 url = f'{S3_BASE_URL}{BUCKET}/{key}'
@@ -176,9 +187,12 @@ class ProfileUpdate(LoginRequiredMixin, UpdateView):
                 print('An error ocurred uploading the file to s3.')
         return super().form_valid(form)
 
+
 def profile_detail(request, user_id):
     profile = Profile.objects.get(user=user_id)
     print(profile)
-    return render(request, 'profile/detail.html', { 'profile': profile })
-    
- 
+    return render(request, 'profile/detail.html', {'profile': profile})
+
+
+def paint_index(request):
+    return render(request, 'paint_chat/index.html')
