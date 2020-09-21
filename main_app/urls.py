@@ -21,5 +21,5 @@ urlpatterns = [
     path('paint/', views.paint, name='paint'),
     path('files/', views.files, name='files'),
     path('codepen/', views.codepen, name='codepen'),
-    path('harvardartapi/', views.HarvardArtApi.as_view(), name="harvard_art_api")
+    path('harvardartapi/', views.harvard_art_api, name="harvard_art_api")
 ]

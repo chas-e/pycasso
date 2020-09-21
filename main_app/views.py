@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import ListView, DetailView, TemplateView
+from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.decorators.csrf import csrf_exempt
 
@@ -15,7 +15,7 @@ import requests
 from decouple import config
 
 from .models import Art, Profile, Comment, PaintFile
-from .forms import CommentForm, HarvardApiForm
+from .forms import CommentForm
 from . import services
 
 
@@ -71,11 +71,12 @@ def files(request):
 def codepen(request):
     return render(request, 'codepen/codepen.html')
 
-class HarvardArtApi(TemplateView):
-    def get(self, request):
-        title = request.data('title', None)
-        art_list = services.get_art('title', 'key')
+def harvard_art_api(request):
+    if request.method =='POST':
+        title = request.POST['title']
+        art_list = services.get_art_data(title)
         return render(request, 'harvard_art_api/harvard_art_api.html', art_list)
+    return render(request, 'harvard_art_api/harvard_art_api.html')
 
 class ArtList(LoginRequiredMixin, ListView):
     model = Art

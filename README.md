@@ -1,6 +1,7 @@
 #PYCASSO: the README
 
 ## The Story Behind Pycasso
+Three pals were discussing their common interests and ideas for a joint
 
 ## Images
 
@@ -15,5 +16,6 @@
 ## Icebox & Future Enhancements
 
 ## Get Started
+Click here to visit Pycasso.
 
 
