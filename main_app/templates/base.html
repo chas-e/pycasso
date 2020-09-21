@@ -23,18 +23,15 @@
 
   <body class="avenir">
     <header class="bg black-80 tc pv2">
-      <!-- <a href="{% url 'home' %}" class="link dim white">
-        <img src="https://imgur.com/kdH40nj.png" height="50px" />
-      </a> -->
-      <h1 class="mt2 mb0 baskerville i fw1 f1 white">      <a href="{% url 'home' %}" class="link dim white">
-        <img src="https://imgur.com/kdH40nj.png" height="35px" />
-      </a>Pycasso</h1>
-      <div
-        class="mt2 mb0 f6 fw4 ttu tracked white"
-        onclick="newQuote()"
-        id="quoteDisplay"
-      >
-        <span>Make Art Not War</span>
+      <h1 class="mt2 mb0 baskerville i fw1 f1 white">
+        <a href="{% url 'home' %}" class="link dim white">
+          <img src="https://imgur.com/kdH40nj.png" height="35px" /> </a
+        >Pycasso
+      </h1>
+      <div class="mt2 mb0 f6 fw4 ttu tracked white" >
+        <span style="cursor: pointer" id="quoteDisplay" onclick="newQuote()"
+          >Make Art Not War</span
+        >
       </div>
       <nav class="bt bb tc mw7 center mt2 white">
         <div class="nav-link">
