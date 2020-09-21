@@ -54,8 +54,10 @@ function reset() {
 
 function pencil() {
   canvas.onmousedown = function (e) {
+
     curX = e.clientX - offsetX;
-    curY = e.clientY - offsetY;
+    // curX = e.pageX;
+    // curY = e.pageY;
     hold = true;
 
     prevX = curX;
@@ -68,6 +70,8 @@ function pencil() {
     if (hold) {
       curX = e.clientX - offsetX;
       curY = e.clientY - offsetY;
+      // curX = e.pageX;
+      // curY = e.pageY;
       draw();
     }
   };
@@ -301,7 +305,7 @@ drawSocket.onopen = function (e) {
 drawSocket.onmessage = function (event) {
   alert(`[message] Data received from server: ${event.data}`);
   if (event.data == "reset") {
-    reset()
+    reset();
     return;
   }
   d = JSON.parse(event.data);
@@ -312,16 +316,18 @@ drawSocket.onmessage = function (event) {
   }
 };
 
-drawSocket.onclose = function(event) {
+drawSocket.onclose = function (event) {
   if (event.wasClean) {
-    alert(`[close] Connection closed cleanly, code=${event.code} reason=${event.reason}`);
+    alert(
+      `[close] Connection closed cleanly, code=${event.code} reason=${event.reason}`
+    );
   } else {
     // e.g. server process killed or network down
     // event.code is usually 1006 in this case
-    alert('[close] Connection died');
+    alert("[close] Connection died");
   }
 };
 
-drawSocket.onerror = function(error) {
+drawSocket.onerror = function (error) {
   alert(`[error] ${error.message}`);
 };
