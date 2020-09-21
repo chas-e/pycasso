@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
     'main_app',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -79,10 +80,6 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'pycasso',
-        'USER': 'postgres',
-        'PASSWORD': 'starwars',
-        'PORT': 5432,
-        'HOST': 'localhost'
     }
 }
 
@@ -128,3 +125,5 @@ STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/'
 
 LOGOUT_REDIRECT_URL = '/'
+
+ASGI_APPLICATION = 'pycasso.routing.application'
