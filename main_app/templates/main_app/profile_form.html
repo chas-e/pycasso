@@ -8,7 +8,7 @@
 <h1>Profile</h1>
 {% endif %}
 
-<form action="" class="art-form-wrapper"  enctype="multipart/form-data" method="post">
+<form action="" class="art-form-wrapper" enctype="multipart/form-data" method="post">
     <div class="add-art-div justify-center-ns">
         {% csrf_token %}
         <table>
@@ -18,5 +18,11 @@
         <input type="file" name="profile-img" value="{{ object.profile_img }}">
     </div>
 </form>
+
+<script>
+    $(function () {
+        $("#id_birthday").datepicker();
+    });
+</script>
 
 {% endblock %}

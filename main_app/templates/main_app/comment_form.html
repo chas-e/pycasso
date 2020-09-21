@@ -1,8 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<<<<<<< HEAD
 <form action="" class="art-form-wrapper" method="POST">
     <div class="add-art-div justify-center-ns">
+=======
+
+<form action="" method="POST">
+>>>>>>> 392ac96fc28dd2b904d2cc7ed4462718614fa527
     {% csrf_token %}
     <table>
         {{ form.as_table }}
@@ -12,6 +17,12 @@
     <a href="{% url 'gallery_detail' object.art.id %}">Cancel</a>
 </div>
 </form>
+
+<script>
+    $(function () {
+        $("#id_date_created").datepicker();
+    });
+</script>
 
 
 {% endblock %}

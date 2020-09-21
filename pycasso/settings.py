@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'jquery',
 ]
 
 MIDDLEWARE = [
@@ -79,10 +80,6 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'pycasso',
-        'USER': 'postgres',
-        'PASSWORD': 'starwars',
-        'PORT': 5432,
-        'HOST': 'localhost'
     }
 }
 

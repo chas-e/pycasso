@@ -65,7 +65,8 @@ def files(request):
         all_data = PaintFile.objects.all()
         return render(request, "files.html", {'files': all_data})
 
-
+def codepen(request):
+    return render(request, 'codepen/codepen.html')
 
 class ArtList(LoginRequiredMixin, ListView):
     model = Art
