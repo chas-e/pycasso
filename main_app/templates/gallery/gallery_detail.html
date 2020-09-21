@@ -3,10 +3,11 @@
 {% block content %}
 
 <h1>Art Details</h1>
-<section>
+<section class="art-form-wrapper">
     <div>
         <img src="{{ art.url }}" alt="">
     </div>
+    <div class="add-art-div justify-center-ns">
     <div>
         <h3>{{ art.title }}</h3>
     </div>
@@ -40,6 +41,7 @@
             {% endfor %}
         </div>
     </div>
+</div>
 </section>
 
 

@@ -127,12 +127,17 @@ th {
 
 .profile-img {
     width: 50%;
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0 !important;
-    background-size: 105vh;
+    height: 100vh;  
+}
+
+.profile-img img{
+    max-width: 100%;
+    height: calc(100vh - 16px);
+    box-sizing: border-box;
 }
 
 .profile-page-detail {

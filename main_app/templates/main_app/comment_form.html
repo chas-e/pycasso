@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<form action="" method="POST">
+<form action="" class="art-form-wrapper" method="POST">
+    <div class="add-art-div justify-center-ns">
     {% csrf_token %}
     <table>
         {{ form.as_table }}
@@ -9,6 +10,7 @@
     <br><br>
     <input type="submit" value="Update Comment">
     <a href="{% url 'gallery_detail' object.art.id %}">Cancel</a>
+</div>
 </form>
 
 
