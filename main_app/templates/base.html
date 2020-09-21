@@ -26,6 +26,9 @@
                             src="https://imgur.com/kdH40nj.png" height="50px"></a>
                     <a class="link dim white justify-start" href="{% url 'gallery_index' %}" title="Gallery">Gallery</a>
                     <a class="link dim white justify-start" href="{% url 'codepen' %}" title="Codepen">Codepen Art</a>
+                    <a class="link dim white justify-start" href="{% url 'harvard_art_api' %}"
+                        title="Harvard Art API">Harvard Art API</a>
+
                     {% if user.is_authenticated %}
                     <a class="link dim white justify-end" href="{% url 'art_index' %}" title="View Art">View Art</a>
                     <a class="link dim white justify-end" href="{% url 'profile_detail' user.id %}" title="view">View

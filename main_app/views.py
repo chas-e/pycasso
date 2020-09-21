@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.decorators.csrf import csrf_exempt
 
@@ -11,15 +11,19 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 import uuid
 import boto3
 import json
+import requests
 from decouple import config
 
 from .models import Art, Profile, Comment, PaintFile
-
-from .forms import CommentForm
+from .forms import CommentForm, HarvardApiForm
+from . import services
 
 
 S3_BASE_URL = config('S3_BASE_URL')
 BUCKET = config('BUCKET')
+HARVARD_ART_URL = config('HARVARD_ART_URL')
+HARVARD_API_KEY = config('HARVARD_API_KEY')
+
 
 # Create your views here.
 
@@ -58,7 +62,6 @@ def paint(request):
         file_data.save()
         return redirect('home')
 
-
 @csrf_exempt
 def files(request):
     if request.method == 'GET':
@@ -68,9 +71,14 @@ def files(request):
 def codepen(request):
     return render(request, 'codepen/codepen.html')
 
+class HarvardArtApi(TemplateView):
+    def get(self, request):
+        title = request.data('title', None)
+        art_list = services.get_art('title', 'key')
+        return render(request, 'harvard_art_api/harvard_art_api.html', art_list)
+
 class ArtList(LoginRequiredMixin, ListView):
     model = Art
-
 
 class ArtCreate(LoginRequiredMixin, CreateView):
     model = Art
@@ -87,8 +95,7 @@ class ArtCreate(LoginRequiredMixin, CreateView):
                 s3.upload_fileobj(art_file, BUCKET, key)
                 url = f'{S3_BASE_URL}{BUCKET}/{key}'
                 form.instance.url = url
-            except Exception as e:
-                print(e)
+            except:
                 print('An error ocurred uploading the file to s3.')
         form.instance.user = self.request.user
         return super().form_valid(form)
@@ -97,11 +104,9 @@ class ArtCreate(LoginRequiredMixin, CreateView):
 class ArtDetail(LoginRequiredMixin, DetailView):
     model = Art
 
-
 class ArtUpdate(LoginRequiredMixin, UpdateView):
     model = Art
-    fields = ['title', 'media_type', 'genre', 'description',
-              'colors_used', 'karma', 'date_posted', 'is_public']
+    fields = ['title', 'media_type', 'genre', 'description', 'colors_used', 'karma', 'date_posted', 'is_public']
 
 
     def form_valid(self, form):
@@ -140,7 +145,6 @@ def add_comment(request, art_id):
         new_comment.art_id = art_id
         new_comment.user = request.user
         new_comment.save()
-        print(new_comment, request.user)
     return redirect('gallery_detail', art_id=art_id)
 
 class CommentUpdate(LoginRequiredMixin, UpdateView):
@@ -180,5 +184,4 @@ def profile_detail(request, user_id):
     profile = Profile.objects.get(user=user_id)
     print(profile)
     return render(request, 'profile/detail.html', { 'profile': profile })
-    
- 
+

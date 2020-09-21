@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Harvard Art Museums API Query</h1>
+
+<form action="" method="GET">
+    {% csrf_token %}
+    {{ form.as_table }}
+    <input type="submit" value="Submit">
+</form>
+
+<iframe src="{{ baseimageurl }}" frameborder="0" width="25vmin" height="20vmin" allowfullscreen>
+</iframe>
+<h3>{{ title }}</h3>
+
+
+{% endblock %}

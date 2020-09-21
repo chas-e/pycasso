@@ -5,3 +5,7 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('comment', 'rating', 'date_created')
+
+class HarvardApiForm(forms.Form):
+    class Meta:
+        fields = ('title')
