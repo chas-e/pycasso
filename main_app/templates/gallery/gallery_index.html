@@ -8,18 +8,20 @@
 {% if art.is_public %}
 <article class="cf">
     <div class="fl w-50 w-25-ns" id="div">
-        <a href="{% url 'gallery_detail' art.id %}"class="db aspect-ratio aspect-ratio--1x1 ">
-            <span role="img" style="background-image:url({{art.url}});" class="bg-center cover aspect-ratio--object "></span>   
+        <a href="{% url 'gallery_detail' art.id %}" class="db aspect-ratio aspect-ratio--1x1 ">
+            <span role="img" style="background-image:url({{art.url}});"
+                class="bg-center cover aspect-ratio--object "></span>
         </a>
     </div>
-    
+
     {% endif %}
-    
+
     {% endfor %}
 </article>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-   var random = Math.floor((Math.random() * 5)  + 1)
-$(`#div:nth-child(${random}n)`).attr("class", "fl w-50");        
+    var random = Math.floor((Math.random() * 5) + 1)
+    $(`#div:nth-child(${random}n)`).attr("class", "fl w-50");
 </script>
+
 {% endblock %}
