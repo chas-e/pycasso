@@ -80,11 +80,13 @@ def harvard_art_api(request):
 
 class ArtList(LoginRequiredMixin, ListView):
     model = Art
+    
+    def get_queryset(self):
+        return Art.objects.filter(user=self.request.user)
 
 class ArtCreate(LoginRequiredMixin, CreateView):
     model = Art
-    fields = ['title', 'media_type', 'genre', 'description',
-              'colors_used', 'karma', 'date_posted', 'is_public']
+    fields = ['title', 'media_type', 'genre', 'description', 'colors_used', 'karma', 'date_posted', 'is_public']
               
     def form_valid(self, form):
         art_file = self.request.FILES.get('art-file', None)
@@ -100,7 +102,6 @@ class ArtCreate(LoginRequiredMixin, CreateView):
                 print('An error ocurred uploading the file to s3.')
         form.instance.user = self.request.user
         return super().form_valid(form)
-
 
 class ArtDetail(LoginRequiredMixin, DetailView):
     model = Art
